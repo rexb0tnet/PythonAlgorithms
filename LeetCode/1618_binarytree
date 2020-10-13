@@ -1,0 +1,22 @@
+class Solution:
+    def dfs(self, root, s, res):
+        if not root:
+            return
+        else:
+            if s == "":
+                s += str(root.val)
+            else:
+                s = s + "->" + str(root.val)
+            if not root.right and not root.left:
+                if s != "":
+                    res.append(s)
+            self.dfs(root.right,s,res)
+            self.dfs(root.left,s,res)
+    
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        res = []
+        s = ""
+        self.dfs(root, s, res)
+        return res
